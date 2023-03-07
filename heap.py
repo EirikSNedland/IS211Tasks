@@ -36,7 +36,13 @@ class Heap: ##work in progress, lacks insert, delete and more
         i = math.floor(len(self.list)//2)
         for pos in range(i, -1,-1):
             self.heapify(pos)
-
+            
+    def printList(self):
+        for i in range(1, len(self.list)//2):
+            print(" PARENT : "+ str(self.list[i])+" LEFT CHILD : "+ 
+                                str(self.list[2 * i + 1])+" RIGHT CHILD : "+
+                                str(self.list[2 * i + 2]))
+   
 heap = Heap()
 heap.list = [19,13,15,3,7,4,8,9,10,11,16,12,1,5,6,21,32,20,24]
 heap.heapSort()
@@ -45,3 +51,4 @@ heap.heapSort() ##need to run sort twice to get it heap sorted
 print(heap.list)
 heap.heapSort()
 print(heap.list)
+heap.printList()
