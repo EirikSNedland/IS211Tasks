@@ -13,6 +13,18 @@ class LinkedList:
         while currentNode is not None:
             print(currentNode.data)
             currentNode = currentNode.nextNode
+        
+    def printListInReverse(self):
+        currentNode = self.nextNode
+        arr = []
+        print("")
+        while currentNode is not None:
+            arr.append(currentNode.data)
+            currentNode = currentNode.nextNode
+        i = len(arr)
+        while i > 0:
+            print(arr[i-1])
+            i -= 1
     
     def insertAtEnd(self,data):
         currentNode = self.nextNode
@@ -25,14 +37,38 @@ class LinkedList:
         self.nextNode = Node(data)
         self.nextNode.nextNode = oldNextNode
     
-    def removeFromEnd(self):
+    def delFromEnd(self):
         currentNode = self.nextNode
         while currentNode.nextNode.nextNode is not None:
             currentNode = currentNode.nextNode
         currentNode.nextNode = None
     
-    def removeFromStart(self):
+    def delFirstNode(self):
+        if self.nextNode is None:
+            print("List is empty")
+            return
         self.nextNode = self.nextNode.nextNode
+
+    def delNode(self, dataToDel):
+        if self.nextNode is None:
+            print("cannot delete because List is empty")
+            return
+        if self.nextNode.data == dataToDel:
+            self.delFirstNode()
+        currentNode = self.nextNode
+        previousNode = None
+        while currentNode is not None:
+            if currentNode.data == dataToDel: #cheaks to nodes in advance/hard to change previous node
+                if currentNode.nextNode is None:
+                    previousNode.nextNode = None
+                    return
+                else:
+                    previousNode.nextNode = currentNode.nextNode
+                    return
+            else:
+                previousNode = currentNode
+                currentNode = currentNode.nextNode
+        print(dataToDel,"was not in the list")
     
         
 
@@ -51,8 +87,8 @@ print()
 list1.insertAtStart("Im first now")
 list1.printList() #inserted at start
 print()
-list1.removeFromEnd() #removed from end
+list1.delFromEnd() #removed from end
 list1.printList()
 print()
-list1.removeFromStart() #removed from start
+list1.delFromStart() #removed from start
 list1.printList()
