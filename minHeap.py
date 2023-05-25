@@ -1,6 +1,6 @@
 class MinHeap:
     def __init__(self,arr):
-        self.arr = arr #preffer to use arr as list even tho it is not an array
+        self.arr = arr 
 
     #n list size
     #i = root
